@@ -1,6 +1,9 @@
+
+import { InfiniteMovingCards } from "@/components/global/infiniteMovingCards";
 import Navbar from "@/components/global/navbar";
 import { ContainerScroll } from "@/components/global/scrollAnimation";
 import { Button } from "@/components/ui/button";
+import { clients } from "@/lib/constant";
 import Image from "next/image";
 
 export default function Home() {
@@ -27,6 +30,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <InfiniteMovingCards
+        className = "md:mt-[18rem] mt-[-100px]"
+        items= {clients}
+        direction="right"
+        speed = "slow"
+      />
     </main>
   );
 }
