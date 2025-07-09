@@ -1,3 +1,5 @@
+import { House, Workflow, Settings, Radio, ReceiptText, LayoutTemplate, Logs } from 'lucide-react'
+
 export const clients = [...new Array(10)].map((client, index)=>({
     href: `/images/${index+1}.png`
 }))
@@ -81,4 +83,14 @@ export const products = [
     link: 'https://efreeinvoice.com',
     thumbnail: '/images/p3.png',
   },
+]
+
+export const menuOptions = [
+  { name: 'Dashboard', href: '/dashboard', icon: House },
+  { name: 'Workflows',  href: '/workflows', icon: Workflow },
+  { name: 'Settings',  href: '/settings', icon: Settings  },
+  { name: 'Connections', href: '/connections', icon: Radio },
+  { name: 'Billing',  href: '/billing', icon: ReceiptText },
+  { name: 'Templates',  href: '/templates', icon: LayoutTemplate },
+  { name: 'Logs',  href: '/logs', icon: Logs },
 ]

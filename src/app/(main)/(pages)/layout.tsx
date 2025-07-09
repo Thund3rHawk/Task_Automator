@@ -1,10 +1,10 @@
 import React from 'react'
 
-type Props = {}
+type Props = {children: React.ReactNode}
 
 const Layout = (props: Props) => {
   return (
-    <div>Layout</div>
+    <div>{props.children}</div>
   )
 }
 

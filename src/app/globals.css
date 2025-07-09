@@ -20,11 +20,9 @@
   );
 }
 
-
-@theme inline {
-  
+.nextjs-toast {
+  display: none !important;
 }
-
 
 @theme inline {
   --color-background: var(--background);

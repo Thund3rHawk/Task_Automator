@@ -4,7 +4,6 @@ import { LampComponent } from "@/components/global/lamp";
 import Navbar from "@/components/global/navbar";
 import { ContainerScroll } from "@/components/global/scrollAnimation";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-
 import { Button } from "@/components/ui/button";
 import { clients, products } from "@/lib/constant";
 import { CheckIcon } from "lucide-react";

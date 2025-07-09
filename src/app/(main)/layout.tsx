@@ -1,10 +1,16 @@
+import MenuOptions from '@/components/sidebar'
 import React from 'react'
 
-type Props = {}
+type Props = {children: React.ReactNode}
 
 const Layout = (props: Props) => {
   return (
-    <div>Layout</div>
+    <div className='flex overflow-hidden h-screen'>
+      <MenuOptions/>
+      <div className="w-full">
+        {props.children}
+      </div>
+    </div>
   )
 }
 
