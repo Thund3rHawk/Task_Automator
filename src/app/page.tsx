@@ -1,5 +1,3 @@
-
-
 import { HeroParallax } from "@/components/global/connectParrallax";
 import { InfiniteMovingCards } from "@/components/global/infiniteMovingCards";
 import { LampComponent } from "@/components/global/lamp";
@@ -10,7 +8,6 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import { Button } from "@/components/ui/button";
 import { clients, products } from "@/lib/constant";
 import { CheckIcon } from "lucide-react";
-import Image from "next/image";
 
 export default function Home() {
   return (
