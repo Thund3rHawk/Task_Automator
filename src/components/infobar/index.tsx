@@ -3,6 +3,7 @@ import React from "react";
 import { Input } from "../ui/input";
 import { Tooltip, TooltipProvider } from "@radix-ui/react-tooltip";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { UserButton } from "@clerk/nextjs";
 
 type Props = {};
 
@@ -36,6 +37,7 @@ const Infobar = (props: Props) => {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
+      <UserButton/>
     </div>
   );
 };
