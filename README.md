@@ -51,11 +51,6 @@ This project is a [Next.js](https://nextjs.org) application, initialized using [
 Deploy your application effortlessly on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), the creators of Next.js.  
 For detailed deployment instructions, refer to the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
 
-## Contributing
-
-Feedback and contributions are welcome! Please open issues or pull requests on the [GitHub repository](https://github.com/vercel/next.js).
-
--->
 
 ## Learn More
 
