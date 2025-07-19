@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,24 +16,35 @@ import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/types";
 import { Loader2 } from "lucide-react";
 
-const ProfileForm = () => {
+type Props = {
+  user?: any
+  onUpdate?: any
+}
+
+const ProfileForm = ({user, onUpdate}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log("user data: ",user);
 
   const form = useForm<z.infer<typeof formSchema>>({
     mode: "onChange",
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
+      name: user.name,
+      email: user.email,
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
+    await onUpdate(values.name)
+    setIsLoading(false)
   }
+
+  useEffect(() => {
+    form.reset({ name: user.name, email: user.email })
+  }, [user])
 
   return (
     <Form {...form}>
@@ -56,7 +67,7 @@ const ProfileForm = () => {
           )}
         />
         <FormField
-          disabled={isLoading}
+          disabled={true}
           control={form.control}
           name="email"
           render={({ field }) => (
