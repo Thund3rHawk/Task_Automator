@@ -1,4 +1,5 @@
 import { House, Workflow, Settings, Radio, ReceiptText, LayoutTemplate, Logs } from 'lucide-react'
+import { Connection } from './types'
 
 export const clients = [...new Array(10)].map((client, index)=>({
     href: `/images/${index+1}.png`
@@ -93,4 +94,37 @@ export const menuOptions = [
   { name: 'Billing',  href: '/billing', icon: ReceiptText },
   { name: 'Templates',  href: '/templates', icon: LayoutTemplate },
   { name: 'Logs',  href: '/logs', icon: Logs },
+]
+
+export const CONNECTIONS: Connection[] = [
+  {
+    title: 'Google Drive',
+    description: 'Connect your google drive to listen to folder changes',
+    image: '/icons/googleDrive.png',
+    connectionKey: 'googleNode',
+    alwaysTrue: true,
+  },
+  {
+    title: 'Discord',
+    description: 'Connect your discord to send notification and messages',
+    image: '/icons/discord.png',
+    connectionKey: 'discordNode',
+    accessTokenKey: 'webhookURL',
+  },
+  {
+    title: 'Notion',
+    description: 'Create entries in your notion dashboard and automate tasks.',
+    image: '/icons/notion.png',
+    connectionKey: 'notionNode',
+    accessTokenKey: 'accessToken',
+  },
+  {
+    title: 'Slack',
+    description:
+      'Use slack to send notifications to team members through your own custom bot.',
+    image: '/icons/slack.png',
+    connectionKey: 'slackNode',
+    accessTokenKey: 'slackAccessToken',
+    slackSpecial: true,
+  },
 ]
