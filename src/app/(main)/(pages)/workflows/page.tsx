@@ -1,10 +1,18 @@
 import React from 'react'
+import WorkflowBtn from './_components/workflowBtn'
+import Workflows from './_components'
 
 type Props = {}
 
 const Page = (props: Props) => {
   return (
-    <div>Workflows Page</div>
+    <div className='flex flex-col gap-4 relative'>
+      <h1 className="sticky top-0 z-[10] flex items-center justify-between border-b bg-background/50 p-6 text-4xl backdrop-blur-lg">
+        Workflows
+        <WorkflowBtn/>
+      </h1>
+      <Workflows/>
+    </div>
   )
 }
 
