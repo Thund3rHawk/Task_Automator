@@ -31,7 +31,7 @@ export type EditorCanvasTypes =
   | 'Notion'
   | 'Discord'
   | 'Custom Webhook'
-  | 'Google Calender'
+  | 'Google Calendar'
   | 'Trigger'
   | 'Action'
   | 'Wait'
