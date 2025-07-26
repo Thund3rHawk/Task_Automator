@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -32,20 +32,20 @@ import EditorCanvasSidebar from "./editorCanvasSidebar";
 type Props = {};
 
 const initialNode: EditorNodeType[] = [];
-const initalEdges: { id: string; source: string; target: string }[] = [];
+const initialEdges: { id: string; source: string; target: string }[] = [];
 
 const EditorCanvas = (props: Props) => {
   const { dispatch, state } = useEditor();
   const [nodes, setNodes] = useState(initialNode);
-  const [edges, setEdges] = useState(initalEdges);
+  const [edges, setEdges] = useState(initialEdges);
   const [isWorkFlowLoading, setIsWorkFlowLoading] = useState<boolean>(false);
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance>();
   const pathname = usePathname();
 
   const onDragOver = useCallback((event: any) => {
-    event?.preventDefault();
-    event.dataTransfer.dropEffect = "none";
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
   }, []);
 
   const onNodesChange = useCallback(
@@ -68,9 +68,10 @@ const EditorCanvas = (props: Props) => {
     setEdges((eds: any) => addEdge(params, eds));
   }, []);
 
+  
   const onDrop = useCallback(
     (event: any) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       const type: EditorCanvasCardType["type"] = event.dataTransfer.getData(
         "application/reactflow"
@@ -112,6 +113,10 @@ const EditorCanvas = (props: Props) => {
           type: type,
         },
       };
+
+      // console.log('nodes');
+      
+
       //@ts-ignore
       setNodes((nds) => nds.concat(newNode));
     },
@@ -138,6 +143,11 @@ const EditorCanvas = (props: Props) => {
       },
     });
   };
+
+  useEffect(()=>{
+    // console.log(nodes, edges);
+    dispatch({type: 'LOAD_DATA', payload: {edges, elements:nodes}})
+  },[nodes,edges])
 
   const nodeTypes = useMemo(
     () => ({
@@ -186,7 +196,7 @@ const EditorCanvas = (props: Props) => {
               </div>
             ) : (
               <ReactFlow
-                className="w-[300px]"
+                className="w-[300px] h-full"
                 onDrop={onDrop}
                 onDragOver={onDragOver}
                 nodes={state.editor.elements}
@@ -203,6 +213,12 @@ const EditorCanvas = (props: Props) => {
                 <MiniMap
                   position="bottom-left"
                   className="!bg-background"
+                  nodeColor={() =>
+                    window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                      ? "#444"
+                      : "#e2e2e2"
+                  }
                   zoomable
                   pannable
                 />
@@ -218,7 +234,7 @@ const EditorCanvas = (props: Props) => {
         </div>
       </ResizablePanel>
       <ResizableHandle />
-      {/* <ResizablePanel defaultSize={40} className="relative sm:block">
+      <ResizablePanel defaultSize={40} className="relative sm:block">
         {isWorkFlowLoading ? (
           <div className="absolute flex h-full w-full items-center justify-center">
             <svg
@@ -243,7 +259,7 @@ const EditorCanvas = (props: Props) => {
             <EditorCanvasSidebar nodes={nodes} />
           </FlowInstance>
         )}
-      </ResizablePanel> */}
+      </ResizablePanel>
     </ResizablePanelGroup>
   );
 };

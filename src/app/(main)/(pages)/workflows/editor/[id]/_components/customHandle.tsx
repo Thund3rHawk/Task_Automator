@@ -33,7 +33,16 @@ const CustomHandle = (props: Props) => {
             if (targetFromHandleInState === 1) return false;
             return false;
         }}
-        className='!-bottom-2 h-4 !w-4 dark:bg-neutral-800'
+        className='!-bottom-1.2 dark:bg-neutral-800'
+        style={{
+            width: 12,
+            height: 12,
+            borderRadius: '50%',
+            border: '2px solid #888',
+            background: 'white',
+            bottom: -2, // Fix 2px gap for bottom handle
+            ...props.style,
+        }}
     />
   )
 }
